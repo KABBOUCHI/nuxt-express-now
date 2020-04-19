@@ -19,8 +19,7 @@ if (process.env.BASIC_AUTH === 'enabled') {
 }
 
 app.use(bodyParser.json())
-// Define server routes
-app.use(apiRoutes)
+app.use(require('./api/yts'))
 
 export default [
   {
