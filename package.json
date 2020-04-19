@@ -27,7 +27,8 @@
     "express": "^4.16.4",
     "express-basic-auth": "^1.2.0",
     "nuxt": "^2.9.2",
-    "nuxt-basic-auth-module": "^1.2.0"
+    "nuxt-basic-auth-module": "^1.2.0",
+    "webtorrent": "^0.108.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
