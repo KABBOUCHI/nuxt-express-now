@@ -1,10 +1,10 @@
-const router = require("express").Router();
-const axios = require("axios").default;
+import axios from 'axios'
 
-router.get("/list", (req, res) => {
+export const getUsers = async (req, res) => {
   const { query: q } = req;
-  axios
-    .get("https://yts.mx/api/v2/list_movies.json", {
+  try {
+    const { data } = await axios.get(
+      "https://yts.mx/api/v2/list_movies.json", {
       params: {
         query_term: q.query || q.q || 0,
         page: q.page || q.p || 1,
@@ -15,33 +15,10 @@ router.get("/list", (req, res) => {
         order_by: q.order || q.o || "desc",
         with_rt_ratings: true
       }
-    })
-    .then(r => res.send(r.data))
-    .catch(err => res.status(400).send(err));
-});
-
-router.get("/movie/:id", (req, res) =>
-  axios
-    .get("https://yts.mx/api/v2/movie_details.json", {
-      params: {
-        with_images: true,
-        with_cast: true,
-        movie_id: req.params.id
-      }
-    })
-    .then(r => res.send(r.data))
-    .catch(err => res.status(400).send(err))
-);
-
-router.get("/movie/:id/suggestions", (req, res) =>
-  axios
-    .get("https://yts.mx/api/v2/movie_suggestions.json", {
-      params: {
-        movie_id: req.params.id
-      }
-    })
-    .then(r => res.send(r.data))
-    .catch(err => res.status(400).send(err))
-);
-
-module.exports = router;
+    }
+    )
+    res.send(data)
+  } catch (err) {
+    res.send({ error: 'Cannot fetch data!', message: err })
+  }
+}
