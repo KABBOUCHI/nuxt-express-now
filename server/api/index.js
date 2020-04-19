@@ -6,5 +6,6 @@ const ytsController = require('./yts')
 // User routes
 router.get('/users', userController.getUsers)
 router.get('/yts', ytsController.getMovies)
+router.use("/torrent", require("./live-torrent-backend/routes/torrent"));
 
 module.exports = router
