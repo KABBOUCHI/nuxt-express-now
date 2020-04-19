@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getUsers = async (req, res) => {
+export const getMovies = async (req, res) => {
   const { query: q } = req;
   try {
     const { data } = await axios.get(
